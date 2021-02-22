@@ -9,13 +9,9 @@ public class Program {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String path = "c:\\temp\\in.txt";
-		FileReader fr = null;
-		BufferedReader br = null;
 		
-		try {
-			fr = new FileReader(path);
-			br = new BufferedReader(fr);
-			
+		//Mejor Opcion
+		try(BufferedReader br=new BufferedReader(new FileReader(path))) { //Mas junto
 			String line = br.readLine();
 			while(line != null) {
 				System.out.println(line);
@@ -26,20 +22,6 @@ public class Program {
 			// TODO: handle exception
 			System.out.println("Error: " + e.getMessage());
 		}
-		finally {
-			try {
-				if(br != null) {
-					br.close();
-				}
-				if(fr != null) {
-					fr.close();
-				}
-			}
-			catch (IOException e) {//Rastrear a excepcao
-				e.printStackTrace();
-			}
-		}
-
 	}
 
 }
